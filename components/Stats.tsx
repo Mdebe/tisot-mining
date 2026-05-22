@@ -15,28 +15,48 @@ const stats = [
     number: '80+',
     label: 'Projects Completed',
     icon: ShieldCheck,
+    color: '#ed7004',
   },
   {
     number: '5+',
     label: 'Years Experience',
     icon: Truck,
+    color: '#6bcf37',
   },
   {
     number: '40+',
     label: 'Plant & Equipment',
     icon: Pickaxe,
+    color: '#05abf7',
   },
   {
     number: '100%',
     label: 'Safety Commitment',
     icon: Building2,
+    color: '#ed7004',
   },
 ];
 
 export default function Stats() {
   return (
-    <section className="relative z-20 mx-auto -mt-24 max-w-7xl px-6">
-      <div className="grid gap-6 rounded-[2rem] border border-white/10 bg-[#0E0E0E]/95 p-8 backdrop-blur-xl md:grid-cols-2 lg:grid-cols-4">
+    <section className="relative z-20 mx-auto -mt-24 max-w-7xl px-4 sm:px-6">
+      
+      {/* MAIN CONTAINER */}
+      <div
+        className="
+          grid gap-5
+          rounded-[2rem]
+          border border-white/10
+          bg-[#0b0b0b]/90
+          p-5
+          shadow-2xl
+          backdrop-blur-xl
+
+          sm:p-8
+          md:grid-cols-2
+          lg:grid-cols-4
+        "
+      >
         {stats.map((item, index) => {
           const Icon = item.icon;
 
@@ -46,21 +66,71 @@ export default function Stats() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="flex items-center gap-5 rounded-2xl border border-white/5 bg-black/30 p-6"
+              viewport={{ once: true }}
+              className="
+                group relative overflow-hidden
+                rounded-[1.8rem]
+                border border-white/5
+                bg-gradient-to-br from-white/[0.04] to-white/[0.01]
+                p-6
+                transition duration-500
+                hover:-translate-y-2
+                hover:border-white/10
+              "
             >
-              <div className="rounded-2xl bg-amber-500/10 p-4 text-amber-400">
-                <Icon className="h-8 w-8" />
+              {/* GLOW EFFECT */}
+              <div
+                className="absolute -right-10 -top-10 h-32 w-32 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition"
+                style={{
+                  backgroundColor: item.color,
+                }}
+              />
+
+              {/* ICON */}
+              <div
+                className="relative flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg"
+                style={{
+                  backgroundColor: `${item.color}20`,
+                  border: `1px solid ${item.color}40`,
+                }}
+              >
+                <Icon
+                  className="h-8 w-8"
+                  style={{
+                    color: item.color,
+                  }}
+                />
               </div>
 
-              <div>
-                <h3 className="text-4xl font-black text-white">
+              {/* CONTENT */}
+              <div className="relative mt-6">
+                <h3
+                  className="
+                    text-4xl
+                    font-black
+                    tracking-tight
+
+                    sm:text-5xl
+                  "
+                  style={{
+                    color: item.color,
+                  }}
+                >
                   {item.number}
                 </h3>
 
-                <p className="text-sm text-zinc-400">
+                <p className="mt-2 text-sm leading-6 text-zinc-300">
                   {item.label}
                 </p>
               </div>
+
+              {/* BOTTOM LINE */}
+              <div
+                className="absolute bottom-0 left-0 h-1 w-full opacity-80"
+                style={{
+                  background: `linear-gradient(to right, ${item.color}, transparent)`,
+                }}
+              />
             </motion.div>
           );
         })}
