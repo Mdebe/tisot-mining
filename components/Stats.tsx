@@ -39,97 +39,76 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="relative z-20 mx-auto -mt-24 max-w-7xl px-4 sm:px-6 bg-white py-16">
+    <section className="relative z-20 mx-auto -mt-24 max-w-7xl px-4 sm:px-6 py-16">
       
-      {/* MAIN CONTAINER */}
+      {/* BLACK CONTAINER */}
       <div
         className="
-          grid gap-5
-          rounded-[2rem]
-          border border-gray-200
-          bg-white
-          p-5
-          shadow-xl
+          rounded-[2.5rem]
+          bg-black
+          border border-white/10
+          p-6
+          shadow-2xl
 
-          sm:p-8
-          md:grid-cols-2
-          lg:grid-cols-4
+          sm:p-10
         "
       >
-        {stats.map((item, index) => {
-          const Icon = item.icon;
+        {/* GRID */}
+        <div
+          className="
+            grid gap-5
+            md:grid-cols-2
+            lg:grid-cols-4
+          "
+        >
+          {stats.map((item, index) => {
+            const Icon = item.icon;
 
-          return (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="
-                group relative overflow-hidden
-                rounded-[1.8rem]
-                border border-gray-100
-                bg-gray-50
-                p-6
-                transition duration-500
-                hover:-translate-y-2
-                hover:shadow-lg
-                hover:border-gray-200
-              "
-            >
-              {/* GLOW EFFECT */}
-              <div
-                className="absolute -right-10 -top-10 h-32 w-32 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition"
+            return (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="
+                  group relative overflow-hidden
+                  rounded-[1.8rem]
+                  p-6
+                  shadow-lg
+                  transition duration-500
+                  hover:-translate-y-2
+                  hover:shadow-2xl
+                "
                 style={{
                   backgroundColor: item.color,
                 }}
-              />
-
-              {/* ICON */}
-              <div
-                className="relative flex h-16 w-16 items-center justify-center rounded-2xl shadow-sm"
-                style={{
-                  backgroundColor: `${item.color}15`,
-                  border: `1px solid ${item.color}30`,
-                }}
               >
-                <Icon
-                  className="h-8 w-8"
-                  style={{
-                    color: item.color,
-                  }}
-                />
-              </div>
+                {/* SUBTLE DARK OVERLAY */}
+                <div className="absolute inset-0 bg-black/10" />
 
-              {/* CONTENT */}
-              <div className="relative mt-6">
-                <h3
-                  className="
-                    text-4xl font-black tracking-tight sm:text-5xl
-                  "
-                  style={{
-                    color: item.color,
-                  }}
-                >
-                  {item.number}
-                </h3>
+                {/* ICON */}
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
+                  <Icon className="h-8 w-8 text-white" />
+                </div>
 
-                <p className="mt-2 text-sm leading-6 text-zinc-600">
-                  {item.label}
-                </p>
-              </div>
+                {/* CONTENT */}
+                <div className="relative mt-6 text-white">
+                  <h3 className="text-4xl font-black tracking-tight sm:text-5xl">
+                    {item.number}
+                  </h3>
 
-              {/* BOTTOM LINE */}
-              <div
-                className="absolute bottom-0 left-0 h-1 w-full opacity-70"
-                style={{
-                  background: `linear-gradient(to right, ${item.color}, transparent)`,
-                }}
-              />
-            </motion.div>
-          );
-        })}
+                  <p className="mt-2 text-sm leading-6 text-white/90">
+                    {item.label}
+                  </p>
+                </div>
+
+                {/* BOTTOM GLOW LINE */}
+                <div className="absolute bottom-0 left-0 h-1 w-full bg-white/30" />
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
