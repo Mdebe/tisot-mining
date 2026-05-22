@@ -25,7 +25,7 @@ export default function Navbar() {
       className="
         fixed top-0 z-50 w-full
         border-b border-white/10
-        bg-[#050505]/80
+        bg-black
         backdrop-blur-2xl
       "
     >
@@ -34,27 +34,21 @@ export default function Navbar() {
         {/* LOGO */}
         <Link href="/" className="group flex items-center gap-4">
           
-          {/* LOGO BOX */}
           <div
             className="
-              relative h-20 w-20 overflow-hidden
-              rounded-[1.7rem]
-              border border-white/10
-              bg-gradient-to-br from-white/10 to-white/5
-              p-2 shadow-2xl
+              relative h-20 w-20
               transition duration-500
               group-hover:scale-105
             "
           >
-            {/* BRAND GLOW */}
-            <div className="absolute inset-0 rounded-[1.7rem] bg-gradient-to-br from-[#ed7004]/20 via-[#6bcf37]/10 to-[#05abf7]/20 opacity-80" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#ed7004]/20 via-[#6bcf37]/10 to-[#05abf7]/20 blur-2xl" />
 
             <Image
               src="/images/logo.jpeg"
               alt="TISOT Mining Logo"
               fill
               priority
-              className="object-contain p-1"
+              className="object-contain"
             />
           </div>
 
@@ -65,7 +59,6 @@ export default function Navbar() {
                 text-2xl font-black tracking-[0.15em]
                 text-white
                 drop-shadow-lg
-
                 sm:text-3xl
                 md:text-4xl
               "
@@ -77,12 +70,9 @@ export default function Navbar() {
               className="
                 -mt-1 text-[11px]
                 uppercase tracking-[0.45em]
-
                 sm:text-sm
               "
-              style={{
-                color: '#ed7004',
-              }}
+              style={{ color: '#ed7004' }}
             >
               Mining
             </p>
@@ -96,7 +86,7 @@ export default function Navbar() {
               key={link}
               href="#"
               className="
-                relative text-sm font-medium uppercase
+                group relative text-sm font-medium uppercase
                 tracking-[0.15em]
                 text-zinc-300
                 transition duration-300
@@ -105,19 +95,12 @@ export default function Navbar() {
             >
               <span className="relative z-10">{link}</span>
 
-              {/* HOVER UNDERLINE */}
-              <span
-                className="
-                  absolute bottom-[-8px] left-0 h-[2px]
-                  w-0 transition-all duration-300
-                  group-hover:w-full
-                "
-              />
-
               <div
                 className="
-                  absolute bottom-[-6px] left-0 h-[2px]
-                  w-0 transition-all duration-300 hover:w-full
+                  absolute bottom-[-8px] left-0
+                  h-[2px] w-0
+                  transition-all duration-300
+                  group-hover:w-full
                 "
                 style={{
                   background:
@@ -159,19 +142,9 @@ export default function Navbar() {
           "
         >
           {open ? (
-            <X
-              size={28}
-              style={{
-                color: '#ed7004',
-              }}
-            />
+            <X size={28} style={{ color: '#ed7004' }} />
           ) : (
-            <Menu
-              size={28}
-              style={{
-                color: '#05abf7',
-              }}
-            />
+            <Menu size={28} style={{ color: '#05abf7' }} />
           )}
         </button>
       </div>
@@ -181,7 +154,7 @@ export default function Navbar() {
         <div
           className="
             border-t border-white/10
-            bg-[#050505]/95
+            bg-black
             backdrop-blur-2xl lg:hidden
           "
         >
@@ -214,7 +187,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* MOBILE CTA */}
             <button
               className="
                 mt-4 rounded-2xl px-6 py-4
