@@ -39,18 +39,17 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="relative z-20 mx-auto -mt-24 max-w-7xl px-4 sm:px-6">
+    <section className="relative z-20 mx-auto -mt-24 max-w-7xl px-4 sm:px-6 bg-white py-16">
       
       {/* MAIN CONTAINER */}
       <div
         className="
           grid gap-5
           rounded-[2rem]
-          border border-white/10
-          bg-[#0b0b0b]/90
+          border border-gray-200
+          bg-white
           p-5
-          shadow-2xl
-          backdrop-blur-xl
+          shadow-xl
 
           sm:p-8
           md:grid-cols-2
@@ -70,12 +69,13 @@ export default function Stats() {
               className="
                 group relative overflow-hidden
                 rounded-[1.8rem]
-                border border-white/5
-                bg-gradient-to-br from-white/[0.04] to-white/[0.01]
+                border border-gray-100
+                bg-gray-50
                 p-6
                 transition duration-500
                 hover:-translate-y-2
-                hover:border-white/10
+                hover:shadow-lg
+                hover:border-gray-200
               "
             >
               {/* GLOW EFFECT */}
@@ -88,10 +88,10 @@ export default function Stats() {
 
               {/* ICON */}
               <div
-                className="relative flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg"
+                className="relative flex h-16 w-16 items-center justify-center rounded-2xl shadow-sm"
                 style={{
-                  backgroundColor: `${item.color}20`,
-                  border: `1px solid ${item.color}40`,
+                  backgroundColor: `${item.color}15`,
+                  border: `1px solid ${item.color}30`,
                 }}
               >
                 <Icon
@@ -106,11 +106,7 @@ export default function Stats() {
               <div className="relative mt-6">
                 <h3
                   className="
-                    text-4xl
-                    font-black
-                    tracking-tight
-
-                    sm:text-5xl
+                    text-4xl font-black tracking-tight sm:text-5xl
                   "
                   style={{
                     color: item.color,
@@ -119,14 +115,14 @@ export default function Stats() {
                   {item.number}
                 </h3>
 
-                <p className="mt-2 text-sm leading-6 text-zinc-300">
+                <p className="mt-2 text-sm leading-6 text-zinc-600">
                   {item.label}
                 </p>
               </div>
 
               {/* BOTTOM LINE */}
               <div
-                className="absolute bottom-0 left-0 h-1 w-full opacity-80"
+                className="absolute bottom-0 left-0 h-1 w-full opacity-70"
                 style={{
                   background: `linear-gradient(to right, ${item.color}, transparent)`,
                 }}
