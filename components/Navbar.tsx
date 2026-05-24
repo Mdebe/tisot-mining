@@ -11,13 +11,13 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const links = [
-    'Home',
-    'About',
-    'Services',
-    'Projects',
-    'Equipment',
-    'Safety',
-    'Contact',
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Equipment', href: '/equipment' },
+    { name: 'Safety', href: '/safety' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -30,10 +30,10 @@ export default function Navbar() {
       "
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
-        
+
         {/* LOGO */}
         <Link href="/" className="group flex items-center gap-4">
-          
+
           <div
             className="
               relative h-20 w-20
@@ -41,6 +41,7 @@ export default function Navbar() {
               group-hover:scale-105
             "
           >
+            {/* GLOW */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#ed7004]/20 via-[#6bcf37]/10 to-[#05abf7]/20 blur-2xl" />
 
             <Image
@@ -57,8 +58,7 @@ export default function Navbar() {
             <h1
               className="
                 text-2xl font-black tracking-[0.15em]
-                text-white
-                drop-shadow-lg
+                text-white drop-shadow-lg
                 sm:text-3xl
                 md:text-4xl
               "
@@ -83,8 +83,8 @@ export default function Navbar() {
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((link, index) => (
             <Link
-              key={link}
-              href="#"
+              key={link.name}
+              href={link.href}
               className="
                 group relative text-sm font-medium uppercase
                 tracking-[0.15em]
@@ -93,8 +93,11 @@ export default function Navbar() {
                 hover:text-white
               "
             >
-              <span className="relative z-10">{link}</span>
+              <span className="relative z-10">
+                {link.name}
+              </span>
 
+              {/* UNDERLINE */}
               <div
                 className="
                   absolute bottom-[-8px] left-0
@@ -116,7 +119,8 @@ export default function Navbar() {
         </nav>
 
         {/* CTA BUTTON */}
-        <button
+        <Link
+          href="/contact"
           className="
             hidden overflow-hidden rounded-2xl
             px-6 py-3 text-sm font-bold text-white
@@ -129,7 +133,7 @@ export default function Navbar() {
           }}
         >
           Request Quote
-        </button>
+        </Link>
 
         {/* MOBILE MENU BUTTON */}
         <button
@@ -142,9 +146,15 @@ export default function Navbar() {
           "
         >
           {open ? (
-            <X size={28} style={{ color: '#ed7004' }} />
+            <X
+              size={28}
+              style={{ color: '#ed7004' }}
+            />
           ) : (
-            <Menu size={28} style={{ color: '#05abf7' }} />
+            <Menu
+              size={28}
+              style={{ color: '#05abf7' }}
+            />
           )}
         </button>
       </div>
@@ -161,8 +171,8 @@ export default function Navbar() {
           <div className="flex flex-col gap-5 px-6 py-6">
             {links.map((link, index) => (
               <Link
-                key={link}
-                href="#"
+                key={link.name}
+                href={link.href}
                 onClick={() => setOpen(false)}
                 className="
                   rounded-xl border border-white/5
@@ -183,15 +193,18 @@ export default function Navbar() {
                   }`,
                 }}
               >
-                {link}
+                {link.name}
               </Link>
             ))}
 
-            <button
+            {/* MOBILE CTA */}
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
               className="
                 mt-4 rounded-2xl px-6 py-4
-                font-bold text-white shadow-2xl
-                transition duration-300
+                text-center font-bold text-white
+                shadow-2xl transition duration-300
               "
               style={{
                 background:
@@ -199,7 +212,7 @@ export default function Navbar() {
               }}
             >
               Request Quote
-            </button>
+            </Link>
           </div>
         </div>
       )}
